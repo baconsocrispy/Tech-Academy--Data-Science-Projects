@@ -103,6 +103,28 @@ RMSE: Root Mean Squared Error - the standard deviation of the residuals. Smaller
 the RMSE the closer the observations are to predicted values. 1. Square the residuals,
 2. find the average of the residuals. 3. Get the square root of that total. 
 
+ANOVA: Analysis of variance. Comparing a subject group under different circumstances
+to test if given circumstances had an effect on the group.
+
+One-Way ANOVA: Determines if there is statistical significance between the means of
+two or more independent groups. 
+
+F Statistic: Higher numbers mean correlation is more likely
+
+MAE / Mean Absolute Error: average disparity between a mean and its variation.
+
+Standard Error: a measure of spread in statistics. The higher the number, 
+the more spread out the data is. used when working with sample data. Tells you
+how far sampe mean or median deviates from actual population. Estimate of the
+standard deviation of the population.
+
+T Test: a test of whether or not your sample average is statistically 
+consistent with a hypothesized  population average.
+
+T Statistic: the ratio of the departure of the estimated value of a parameter 
+from its hypothesized value compared to its standard error. The purpose of the 
+t-statistic is to determine whether to accept or reject a null hypothesis.
+
 SYMBOLS
 
 Mean - X-Bar, an x with a bar over it. Any variable with a bar
@@ -124,6 +146,70 @@ Yi - collection of x-coordinates
 Σ - uppercase sigma - sum of collection
 s - lowercase s - standard deviation of sample
 σ - lowercase sigma - standard deviation of population
+
+MACHINE LEARNING MODELS
+
+Logistics regression: Used to find the probability of success or failure in 
+an event or events. It is used when the dependent variable is binary 
+(TRUE/FALSE, 1/0, etc.), while one or more of the independent variables 
+could be nominal, ordinal, interval or a ratio.
+
+Linear discriminant analysis: A method that takes a set of data that has 
+been separated into multiple classes and reduces that number of classes. 
+Analysis is then performed on the data within this reduced number of classes.
+
+K-nearest neighbors (KNN): A supervised machine learning algorithm that 
+can be used to solve classification and regression prediction problems. 
+Its purpose is to predict the classification of new data by analyzing data 
+that has been previously separated by classification.
+
+Classification and regression tree (CART): A decision tree algorithm – 
+similar to boolean function that asks whether something is true or false. 
+CART is an instance of supervised machine learning.
+
+Gaussian naive Bayes (NB): A family of probabilistic classifier models 
+based on Bayes’s Theorem. Every pair of features being classified is 
+independent of each other.
+
+Support vector machine (SVM): A supervised machine learning algorithm 
+that is used to separate data into classes.
+
+TOOLS
+SAS - Statistical Analysis System
+
+SPSS - Statistical Product and Service Solutions - Widely used program for 
+statistical Analysis
+
+MACHINE LEARNING
+
+Train Data - Data given to the algorithm to learn from
+Test Data - Data given to the algorithm to test if it learned what it's supposed to
+
+PCA / Principal Component Analysis: reduction of random variables or the 
+number of features in a data set or sets, while retaining variation present
+in the data. Done by transforming variables to a new set of variables that are 
+known as principal components
+
+Classifier - 
+
+Confusion Matrix - makes note of correctly predicted outcomes vs. actual outcomes:
+True Positives vs. False Positives && False Negatives vs. True Negatives
+
+Precision and Recall: measurement of the correctness of classification in data
+Precision: aims to answer what proportion of positive identifers was correct
+Recall attempts to answer what proportion of actual positivies was correctly identified.
+
+Precision = True Positives / (TP + False Positives) "Machine is correct x% of the time"
+Recall = TP / (TP + False Negatives) "Machine correctly identifies x% of targets" 
+If false negatives is 0, then machine is correct 100% of the time.
+
+F1 Score / F-Score: is a measure of test accuracy. It uses Precision and Recall to find the score.
+
+F1 = 2 * (Precision * Recall) / (Precision + Recall)
+
+Support: Number of occurences of the true response in a class of data
+
+
 
 
 

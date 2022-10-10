@@ -1,0 +1,127 @@
+Understanding Data
+-Understand and Convert Types
+-Aggregate Data
+-Normalize Data
+-Transform Data
+-Filter Data
+
+UNDERSTANDING Data
+Tools: Jupyter Notebook, Pandas Libraray
+
+Use pandas to read csv files: data = pd.read_csv('file_path')
+
+If certain data is bad, read_csv will set dataType to Object
+
+Helpful Python/Pandas Methods:
+
+View Top Rows: data.head()
+Get Data Types for each Column: data.dtypes
+Get Column In a different Data Type: data.[columnName].astype([dataType])
+Change Column data type: set column to data from astype - data.[columnName] = data.[columnName].astype([dataType])
+Change data to numeric dataType: pd.to_numeric([data_set])
+To account for bad data use error handling: pd.to_numeric([data_set], errors="coerce") 
+    This will force data that can't be converted to numeric into 'NaN' "not a number"
+
+
+AGGREGATING DATA
+MIN: data.[column].min()
+MAX: data.[column].max()
+MEAN: data.[column].mean()
+MEDIAN: data.[column].median()
+MODE: data.[column].mode()
+STANDARD DEVIATION: data.[column].std()
+
+Aggregate For Data Set
+data.agg(['min', 'max', 'mean', 'median', 'mode', 'std])
+
+NORMALIZING DATA
+Adjusting values in columns and change their scale
+
+Step 1: Standardization: (Col - Col(mean)) / (Col)std
+
+Step 2: Normalize to between 0 & 1: (Col - Col.min()) / (Col.max() - Col.min())
+
+add new column: data['NEW_COLUMN_NAME'] = [data_set] (such as a column with normalized data of another col)
+
+TRANSFORMING DATA
+data.column.transform(lambda x: [function]) - x represents each col data point as it iterates through
+returns a new set of data instead of changing column
+
+data.groupby('[col]').transform('[OPTION]') - i.e. group by artist and get mean/nunique etc. from another col
+
+FILTERING DATA
+data.filter(items=['COL', 'COL'])
+data.filter(like='[query_term]') - returns dataframe with columns matching case-sensitive query query_term
+data.filter(regex="(?i)[query_term]") - returns dataframe with columns matching non-case-sensitive query_term
+
+data.filter(axis=0, regex="^100.$") - axis=0 means rows
+
+DROPPING COLUMNS
+Drop a single column: df.drop('id', axis=1)
+drop several columns: df.drop(columns=['col1', 'col2'])
+drop column inplace: df.drop('id', axis=1, inplace=True)
+only import certain columns: df = pd.read_csv('file.csv', usecols=['col1', 'col2'])
+
+CHANGE COLUMN CASING
+Lowercase all column names: df.columns.str.lower()
+Use for loop: [x.lower() for x in data.columns]
+Use map: map(lambda x: x.lower(), data.columns)
+
+RENAMING COLUMNS
+rename a dictionary of cols: df.rename(columns={"start":"finish"})
+rename inplace with a lambda: df.rename(columns=lambda x: x.lower(), inplace=True)
+rename on import: df = pd.read('file.csv', names=['id', 'one', 'two'], header=0)
+
+ACCESSING COLUMN DATA
+df['col'] - User square brackets to access column as a series
+df['col'][1] - Access a single row on a column
+df[1:5] - Access a range of rows with a slice
+df[data['year'] > 1800] - Use a basic filter
+
+ACCESSSING DATA WITH .LOC
+Basic format of .loc: df.loc[ROWS, COLS]
+Access a slice of rows and all columns: df.loc[0:2, :]
+Access a slice of rows and specific columns: df.loc[0:2,['col1', 'col2']]
+Filter on rows and select all columns: data.loc[data.artist == 'Blake, Robert', :]
+
+ACCESSING DATA WITH .ILOC 
+Basic format of .iloc: df.iloc[ROWS, COLS]
+Slice of rows by integer position (end is exclusive): df.iloc[0:2, :]
+Access specific rows and cols by position: df.iloc[[1, 5], [12, 100]]
+
+STRING CONTAINS METHOD
+Contains string method: df.col.str.contains('search')
+Filter data with contains and loc and select certain cols: df.loc[df.col.str.contains('search'), ['artist', 'title']]
+Case sensitive regex search: df.loc[df.col.str.contains('one|two', case=False, regex=True), :]
+Convert col types and ignore NaN values: df.col.astype(str).str.contains('search', na=False)
+
+CLEANING BAD DATA
+-What is bad data?
+-Define your goal
+-Drop, fill or replace
+
+STRIP WHITE SPACE FROM COLUMN
+Strip whitespace from entire column: df.coltitle.str.strip()
+Strip with a lambda function for more flexibility: df.coltitle.transform(lambda x: x.strip())
+
+REPLACE BAD DATA
+import nan from numpy and replace all occurences of a specific value: from numpy import nan; df.replace({'colName': {'Value': nan}})
+remember to add inplace=True to change original data: inplace=True
+Filter with loc and fill with NaN: df.loc[df.col == 'value',['col']] = nan
+
+FILL MISSING DATA
+Fill all NaN values in entire dataset: df.fillna(-1)
+Fill NaN values in specific col: df.fillna(value={'col': 0})
+Use Inplace=True to change original: Inplace=True
+
+DROP BAD DATA
+Drop rows with ANY NaN values: df.dropna()
+Drop rows with all NaN values: df.dropna(how='all')
+Drop rows with at least a certain number of NaNs: df.dropna(thresh=15)
+Only look at certain columns: df.dropna(subset['col1', 'col2'], inplace=True)
+
+DROP DUPLICATE DATA
+Drop all duplicates: df.drop_duplicates()
+Drop duplicates if they match across certain columns: df.drop_duplicates(subset=['col1'])
+Keep 'first', 'last' or False: data.drop_duplicates(keep=False)
+Find and see duplicates using .loc across specific columns: data.loc[data.duplicated(subset=['col1', 'col2'], keep=False)]
